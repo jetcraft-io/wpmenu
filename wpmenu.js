@@ -99,14 +99,14 @@
                     $existingSpan.forEach(($span) => $link.appendChild($span));
 
                     $existingSpan.forEach(($span) => {
-                        $span.textContent = $span.textContent.replace(/\(|\)/g, '');
+                        $span.textContent = $span.textContent.replace(/[()]/g, '');
                     });
 
                     if ($textNode && $textNode.nodeType === Node.TEXT_NODE) {
                         let $text = $textNode.textContent.trim();
 
                         if ($text) {
-                            $text = $text.replace(/\(|\)/g, '');
+                            $text = $text.replace(/[()]/g, '');
                             const $span = document.createElement('span');
                             $span.textContent = $text;
                             $link.appendChild($span);
