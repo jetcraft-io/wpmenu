@@ -1,6 +1,7 @@
 /**
  * jetcraft-ws-wpmenu
  * {@link https://jetcraft.io/jetcraft-ws-wpmenu|Jetcraft}
+ * ver. 1.0
  */
 (function() {
     if(window.jetcraftInitWpmenu === true) return;
@@ -20,7 +21,6 @@
                 const $title = $component?.querySelector('h5');
                 const $mainmenu = $component.querySelector('ul:first-of-type');
                 const $submenus = $component.querySelectorAll('ul ul');
-                const $parentItem = $component.querySelectorAll('li:has(ul) > a');
                 const $meta = $component.querySelectorAll('li');
 
                 $title?.addEventListener('click', () => {
