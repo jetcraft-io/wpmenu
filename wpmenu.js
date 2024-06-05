@@ -179,8 +179,6 @@
                 });
 
                 window.jetcraftInitWpmenu = true;
-            } else {
-                return;
             }
         });
     }
