@@ -1,13 +1,51 @@
 /**
  * jetcraft-ws-wpmenu
- * {@link https://jetcraft.io/jetcraft-ws-wpmenu|Jetcraft}
- * ver. 1.0
+ * {@link https://jetcraft.io/jetcraft-ws-wpmenu-01|Jetcraft}
+ * ver. 1.1
  */
 (function() {
     if(window.jetcraftInitWpmenu === true) return;
-    window.jetcraftInitWpmenu = true;
+    window.jetcraftInitWpmenu = window.jetcraftInitWpmenu || false;
 
-    document.addEventListener("DOMContentLoaded", () => {
+    const textNodeRelocation = ($meta) => {
+        $meta.forEach(($metaItem) => {
+            const $link = $metaItem.querySelector('a');
+            const $existingSpan = $metaItem.querySelectorAll('span');
+            const $textNode = $link.nextSibling;
+
+            $existingSpan.forEach(($span) => $link.appendChild($span));
+
+            $existingSpan.forEach(($span) => {
+                $span.textContent = $span.textContent.replace(/[()]/g, '');
+            });
+
+            if ($textNode && $textNode.nodeType === Node.TEXT_NODE) {
+                let $text = $textNode.textContent.trim();
+
+                if ($text) {
+                    $text = $text.replace(/[()]/g, '');
+                    const $span = document.createElement('span');
+                    $span.textContent = $text;
+                    $link.appendChild($span);
+                    $textNode.remove();
+                }
+            }
+
+            $existingSpan.forEach(($span) => $span.style.display = 'inline-block');
+
+            // fix original widget style
+            /*
+            $comps.forEach($comp => {
+                $comp.querySelectorAll('.wp-widget ul').forEach($ul => {
+                    $ul.style.opacity = '1';
+                    $ul.style.transform = 'scale(1)';
+                });
+            });
+            */
+        });
+    }
+
+    const wpmenu = () => {
         const $comps = Array.from(document.querySelectorAll('.jetcraft-ws-wpmenu-01'));
         if ($comps.length === 0) return;
 
@@ -16,12 +54,12 @@
             const $select = $component?.querySelector('select');
             const $parentComp = $select?.closest('.jetcraft-ws-wpmenu-01');
 
-            // Toggle .active
+            // Toggle active
             if (!$select) {
                 const $title = $component?.querySelector('h5');
                 const $mainmenu = $component.querySelector('ul:first-of-type');
                 const $submenus = $component.querySelectorAll('ul ul');
-                const $meta = $component.querySelectorAll('li');
+                const $meta = $component.querySelectorAll('li:has(a)');
 
                 $title?.addEventListener('click', () => {
                     $mainmenu.classList.toggle('active');
@@ -91,39 +129,7 @@
                 });
 
                 // textNode relocation
-                $meta.forEach(($metaItem) => {
-                    const $link = $metaItem.querySelector('a');
-                    const $existingSpan = $metaItem.querySelectorAll('span');
-                    const $textNode = $link.nextSibling;
-
-                    $existingSpan.forEach(($span) => $link.appendChild($span));
-
-                    $existingSpan.forEach(($span) => {
-                        $span.textContent = $span.textContent.replace(/[()]/g, '');
-                    });
-
-                    if ($textNode && $textNode.nodeType === Node.TEXT_NODE) {
-                        let $text = $textNode.textContent.trim();
-
-                        if ($text) {
-                            $text = $text.replace(/[()]/g, '');
-                            const $span = document.createElement('span');
-                            $span.textContent = $text;
-                            $link.appendChild($span);
-                            $textNode.remove();
-                        }
-                    }
-
-                    $existingSpan.forEach(($span) => $span.style.display = 'inline-block');
-
-                    // fix original widget style
-                    $comps.forEach($comp => {
-                        $comp.querySelectorAll('.wp-widget ul').forEach($ul => {
-                            $ul.style.opacity = '1';
-                            $ul.style.transform = 'scale(1)';
-                        });
-                    });
-                });
+                textNodeRelocation($meta);
             }
             else {
                 // using select form
@@ -149,5 +155,34 @@
                 });
             }
         });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        wpmenu();
     });
+
+
+    if (!window.jetcraftInitWpmenu && window.elementorFrontend) {
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/html.default', function() {
+
+            if (!window.jetcraftInitWpmenu) {
+                const $comps = Array.from(document.querySelectorAll('.jetcraft-ws-wpmenu-01'));
+                if ($comps.length === 0) return;
+
+                $comps.forEach(($component) => {
+                    const $select = $component?.querySelector('select');
+
+                    if (!$select) {
+                        const $meta = $component.querySelectorAll('li:has(a)');
+                        textNodeRelocation($meta);
+                    }
+                });
+
+                window.jetcraftInitWpmenu = true;
+            } else {
+                return;
+            }
+        });
+    }
+
 })();

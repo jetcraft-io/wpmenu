@@ -1,6 +1,7 @@
 /**
 * jetcraft-ws-wpmenu
 * {@link https://jetcraft.io/jetcraft-ws-wpmenu-01|Jetcraft}
+ver. 1.1
 */
 
 /**
@@ -138,6 +139,9 @@
     background-color: var(--title-bg-color);
     cursor: pointer;
     line-height: 100%;
+}
+.jetcraft-no-radius .jetcraft-ws-wpmenu-01 h5 {
+    border-radius: 0;
 }
 
 /* Arrow */
@@ -425,7 +429,47 @@
     display: none;
 }
 
-/* Meta Balloon*/
+/* Meta Balloon */
+:where(.jetcraft-ws-wpmenu-01):is(
+.elementor-widget-wp-widget-categories,
+.elementor-widget-wp-widget-archives,
+.elementor-widget-wp-widget-post_views_counter_list_widget
+) li span {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 8px;
+    padding: 0;
+    min-width: 18px;
+    height: 18px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 17px;
+    color: var(--font-color);
+    border: var(--border);
+    border-radius: 999px;
+}
+
+/* Date */
+.jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li a {
+    display: block;
+
+}
+.jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li span {
+    display: block !important;
+    margin-top: 5px;
+    padding: 0;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--font-color);
+    opacity: .5
+}
+.jetcraft-color-dark.jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li span,
+.jetcraft-color-dark .jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li span {
+    font-weight: 300;
+}
 
 /* Form */
 .jetcraft-ws-wpmenu-01 select {
