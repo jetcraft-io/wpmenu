@@ -112,6 +112,9 @@ ver. 1.1
     padding: 0;
     white-space: nowrap;
 }
+.jetcraft-comp .jetcraft-ws-wpmenu-01 a {
+    text-decoration: none;
+}
 .jetcraft-ws-wpmenu-01 ul a {
     color: var(--link-color);
 }
