@@ -52,7 +52,7 @@ ver. 1.1
     --menu-item-margin: 0;
     --menu-item-padding: 6px 0;
 
-    --menu-item-padding-hasChildren: 6px 18px 8px 0;
+    --menu-item-padding-hasChildren: 6px 18px 6px 0;
     --menu-arrow-distance: -3px;
 
     --float-menu-min-width: 160px;
@@ -74,6 +74,9 @@ ver. 1.1
     --submenu-arrow-distance: 4px;
 
     --submenu-indent: 12px;
+
+    /* Menu Accent */
+    --menu-item-padding-accent: 12px 8px;
 
     /* Menu Arrow */
     --arrow-size: 12px;
@@ -405,6 +408,16 @@ ver. 1.1
     display: none;
 }
 
+/* Accent list items */
+.jetcraft-ws-wpmenu-01.float.accent li a,
+.jetcraft-ws-wpmenu-01.reverse.accent li a {
+    padding: var(--menu-item-padding-accent) !important;
+    border-radius: var(--border-radius);
+}
+.jetcraft-ws-wpmenu-01.accent li a:hover {
+    background-color: var(--jetcraft-accent);
+}
+
 /* Underline */
 .jetcraft-ws-wpmenu-01.underline ul:first-of-type > li::before,
 .jetcraft-ws-wpmenu-01.underline ul:first-of-type > li::after {
@@ -457,7 +470,6 @@ ver. 1.1
 /* Date */
 .jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li a {
     display: block;
-
 }
 .jetcraft-ws-wpmenu-01.elementor-widget-wp-widget-recent-posts li span {
     display: block !important;
