@@ -280,8 +280,8 @@ ver. 1.1
     padding-left: var(--submenu-indent);
     border: 0;
 }
-.jetcraft-ws-wpmenu-01.vt  ul:first-of-type ul a,
-.jetcraft-ws-wpmenu-01.vt  ul:first-of-type ul li:has(ul) > a {
+.jetcraft-ws-wpmenu-01.vt ul:first-of-type ul a,
+.jetcraft-ws-wpmenu-01.vt ul:first-of-type ul li:has(ul) > a {
     padding-left: 0;
 }
 .jetcraft-ws-wpmenu-01.vt ul:first-of-type ul li:has(ul) > a::after {
@@ -297,7 +297,7 @@ ver. 1.1
     border-radius: var(--border-radius);
     background-color: var(--bg-color);
 }
-.jetcraft-ws-wpmenu-01.mix  ul:first-of-type > li:has(ul) > ul ul {
+.jetcraft-ws-wpmenu-01.mix ul:first-of-type > li:has(ul) > ul ul {
     position: initial;
     bottom: 0;
     margin: var(--submenu-ul-margin);
