@@ -560,6 +560,11 @@ ver. 1.1
         display: none;
     }
 
+    .jetcraft-ws-wpmenu-01.with-title ul:first-child,
+    .jetcraft-ws-wpmenu-01.no-title ul:first-child {
+        display: flex;
+    }
+
     .jetcraft-ws-wpmenu-01 ul:first-of-type {
         margin-top: var(--menu-mobile-margin-top);
         margin-bottom: var(--menu-mobile-margin-bottom);
