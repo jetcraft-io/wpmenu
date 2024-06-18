@@ -493,7 +493,7 @@ ver. 1.1
     color: var(--jetcraft-text);
     border: var(--border);
     border-radius: var(--border-radius);
-    background-color: var(--jetcraft-custom-bg, #fff);
+    background-color: var(--bg-color);
     cursor: pointer;
 }
 
